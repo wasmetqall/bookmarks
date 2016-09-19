@@ -16,6 +16,11 @@ function do_html_footer(){
 	</html>
 	<?php
 }
+function do_html_url($URL,$text){
+	?>
+	<a href="<?php echo $URL; ?>"><?php echo $text;?> </a>
+	<?php
+}
 function display_site_info(){
 	?>
 	<h1>SOMETHING HERE</h1>
@@ -44,9 +49,9 @@ function display_register_form(){
 		<div>Username:</div>
 		<input type="text" name="username">
 		<div>Password:</div>
-		<input type="text" name="password1">
+		<input type="text" name="passwd">
 		<div>Confirm password</div>
-		<input type="text" name="password2">
+		<input type="text" name="passwd2">
 		<input type="submit" value="submit">
 	</form>
 	<?php
