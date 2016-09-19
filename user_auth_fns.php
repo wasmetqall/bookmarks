@@ -15,6 +15,6 @@
 		if(!$result){
 			throw new Exception("could not register you in database");
 		}
-		return ture;
+		return true;
 	}
 ?>
