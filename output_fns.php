@@ -33,7 +33,7 @@ function display_login_form(){
 	<div>Username:</div>
 		<input type="text" name="username">
 		<div>Password:</div>
-		<input type="text" name="password">
+		<input type="text" name="passwd">
 		<input type="submit" value="submit">
 	</form>
 	<a href="register_form.php">Not a member?</a>
@@ -55,5 +55,11 @@ function display_register_form(){
 		<input type="submit" value="submit">
 	</form>
 	<?php
+}
+function display_user_urls($url_array){
+	echo $url_array."this is display_user_urls";
+}
+function display_user_menu(){
+	echo "this is display_user_menu";
 }
 ?>
