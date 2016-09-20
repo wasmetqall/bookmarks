@@ -62,4 +62,17 @@ function display_user_urls($url_array){
 function display_user_menu(){
 	echo "this is display_user_menu";
 }
+function display_change_passwd_form(){
+	?>
+	<form action="change_passwd.php" method="post">
+		<div>Old passsword:</div>
+		<input type="text" name="old_passwd">
+		<div>New password:</div>
+		<input type="text" name="new_passwd">
+		<div>Confirm new password</div>
+		<input type="text" name="new_passwd2">
+		<input type="submit" value="submit">
+	</form>
+	<?php
+}
 ?>

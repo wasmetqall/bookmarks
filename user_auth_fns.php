@@ -1,5 +1,5 @@
 <?php
-	function register($username,$email,$password){
+function register($username,$email,$password){
 		$conn=db_connect();
 		if(!$conn)
 			exit("Failed to connect to database!");
@@ -17,7 +17,7 @@
 		}
 		return true;
 	}
-	function login($username,$passwd){
+function login($username,$passwd){
         $conn=db_connect();
         if(!$conn)
             exit("Failed to connect to database!");
@@ -30,10 +30,10 @@
         }
         return true;
     }
-    function check_valid_user(){
-        if(isset($_SESSION['valid_user'])){
-            echo "logged in as ".$_SESSION['valid_user']."<br />";
-        }
+function check_valid_user(){
+    if(isset($_SESSION['valid_user'])){
+        echo "logged in as ".$_SESSION['valid_user']."<br />";
+    }
         else{
             do_html_header('Problem:');
             echo 'You are not logged in.<br />';
@@ -41,4 +41,20 @@
             exit();
         }
     }
+function change_passwd($username,$old_passwd,$new_passwd){
+    login($username,$old_passwd);
+    $conn=db_connect();
+
+    if(!$conn){
+        throw new Exception("failed to connect to database");
+    }
+    else{
+        $result=$conn->query("update user set passwd=sha1('".$new_passwd."') where username='".$username."'");
+        if(!$result)
+            throw new Exception('Password could not be changed.');
+        else
+            return true;
+    }
+}
+
 ?>
