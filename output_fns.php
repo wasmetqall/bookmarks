@@ -57,10 +57,19 @@ function display_register_form(){
 	<?php
 }
 function display_user_urls($url_array){
-	echo $url_array."this is display_user_urls";
+	foreach ($url_array as $value) {
+		do_html_url($value,$value);
+		echo "<br/>";
+	}
 }
 function display_user_menu(){
-	echo "this is display_user_menu";
+	echo "</br>";
+	do_html_url('member.php','home');
+	do_html_url('add_bm_form.php','Add BM');
+	do_html_url('delete_bms.php','Delete BM');
+	do_html_url('change_passwd_form.php','Change password');
+	do_html_url('recommend.php','Recommend');
+	do_html_url('logout.php','Logout');
 }
 function display_change_passwd_form(){
 	?>
@@ -75,4 +84,22 @@ function display_change_passwd_form(){
 	</form>
 	<?php
 }
+function display_forgot_passwd_form(){
+	?>
+	<form action="forgot_passwd.php" method="post">
+		<div>Enter you username</div>
+		<input name="username" type="text">
+		<input type="submit" value="submit">
+	</form>
+	<?php
+}function display_add_bm_form(){
+	?>
+	<form action="add_bms.php" method="post">
+		<div>New bookmark:</div>
+		<input name="new_bm" type="text" value="http://">
+		<input type="submit" value="add bookmark">
+	</form>
+	<?php
+}
+
 ?>

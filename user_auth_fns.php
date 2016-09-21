@@ -56,5 +56,25 @@ function change_passwd($username,$old_passwd,$new_passwd){
             return true;
     }
 }
-
+function notify_passwd($username){
+    $conn=db_connect();
+    $result=$conn->query("select email,passwd from user where username='".$username."'");
+    if(!$result){
+        throw new Exception('Could not find email address');
+    }
+    if($result->num_rows==0){
+        throw new Exception("Go away!");
+    }
+    $row=$result->fetch_object();
+    $email=$row->email;
+    $passwd=$row->passwd;
+    $from="From:support@phpbookmark";
+    $mesg="Your PHPBookmark password is ".$passwd;
+    if(mail($email,'information',$mesg,$from)){
+        return true;
+    }
+    else{
+        throw new Exception('Could not send email.');
+    }
+}
 ?>

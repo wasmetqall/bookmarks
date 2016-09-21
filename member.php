@@ -3,20 +3,22 @@ require_once('bookmark_fns.php');
 
 session_start();
 
-$username = $_POST['username'];
-$passwd = $_POST['passwd'];
+if (!isset($_SESSION['valid_user'])) {
+    $username = $_POST['username'];
+    $passwd = $_POST['passwd'];
 
-if ($username && $passwd) {
-    try {
-        login($username, $passwd);
-        $_SESSION['valid_user']=$username;
-    }
-    catch (Exception $e) {
-        do_html_header('Problem:');
-        echo 'you could not be logged in';
-        do_html_url('login.php','Login');
-        do_html_footer();
-        exit;
+    if ($username && $passwd) {
+        try {
+            login($username, $passwd);
+            $_SESSION['valid_user'] = $username;
+        }
+        catch (Exception $e) {
+            do_html_header('Problem:');
+            echo 'you could not be logged in';
+            do_html_url('login.php', 'Login');
+            do_html_footer();
+            exit;
+        }
     }
 }
 do_html_header('Home');
